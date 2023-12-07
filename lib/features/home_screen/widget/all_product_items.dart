@@ -23,10 +23,13 @@ class AllProductItems extends StatelessWidget {
           Expanded(
             flex: 2,
             child: Container(
-              child: Image.network(
-                data.thumbnail,
-                fit: BoxFit.contain,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(image: NetworkImage(data.thumbnail,
+                  ),fit: BoxFit.fill,)
               ),
+
             ),
           ),
           AppLayout.sizeW20,

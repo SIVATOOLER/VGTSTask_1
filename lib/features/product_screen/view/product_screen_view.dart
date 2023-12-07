@@ -1,10 +1,16 @@
+import 'dart:math';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:vgts_task1/config/app_layout.dart';
 import 'package:vgts_task1/features/product_screen/repo/product_screen_call.dart';
 import 'package:vgts_task1/utils/error_text.dart';
 import 'package:vgts_task1/utils/loading_widget.dart';
+import 'package:vgts_task1/widget/cus_indicator.dart';
 import 'package:vgts_task1/widget/rating_widget.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
+
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key, required this.id});
@@ -15,6 +21,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
+  var currentIndex=0;
   @override
   Widget build(BuildContext context) {
     final sHeight = MediaQuery.of(context).size.height;
@@ -38,19 +45,33 @@ class _ProductScreenState extends State<ProductScreen> {
                               itemCount: snapshot.data!.images.length,
                               itemBuilder: (BuildContext context, int itemIndex,
                                       int pageViewIndex) =>
-                                  Image.network(
-                                snapshot.data!.images[itemIndex],
-                                fit: BoxFit.contain,
-                              ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white70,
+                                        borderRadius: BorderRadius.circular(12),
+                                        image: DecorationImage(image: NetworkImage(snapshot.data!.images[itemIndex],
+                                        ),fit: BoxFit.contain
+                                          ,)
+                                    ),
+
+                                  ),
                               options: CarouselOptions(
+
                                 height: sHeight * 0.4,
                                 autoPlay: false,
                                 enlargeCenterPage: true,
                                 viewportFraction: 0.9,
-                                initialPage: 1,
+                                initialPage: 0,
+                                onPageChanged: (index,reason){
+                                  setState(() {
+
+                                    currentIndex=index;
+                                  });
+                                }
                               ),
                             ),
-                          ),
+                          ),AppLayout.sizeH20,
+                          Center(child: CusIndicator(index:currentIndex , length: snapshot.data!.images.length)),
                           AppLayout.sizeH20,
                           Padding(
                             padding: AppLayout.cardPadding,
@@ -205,21 +226,22 @@ class _ProductScreenState extends State<ProductScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const BackButton(
-                      style: ButtonStyle(
-                        iconColor: MaterialStatePropertyAll(Colors.black),
-                      ),
-                    ),
+                   IconButton(
+                       onPressed: (){
+                         Navigator.pop(context);
+                       }, icon: Icon(CupertinoIcons.arrow_left,
+                   color: Colors.black.withOpacity(0.5),)),
+
                     Column(
                       children: [
                         IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.shopping_cart_outlined),
+                          icon: const Icon(FluentIcons.cart_20_regular),
                         ),
                         AppLayout.sizeH5,
                         IconButton(
                           onPressed: () {},
-                          icon: const Icon(Icons.favorite_border),
+                          icon: const Icon(FluentIcons.heart_20_regular),
                         ),
                       ],
                     ),

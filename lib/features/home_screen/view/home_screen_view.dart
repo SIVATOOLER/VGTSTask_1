@@ -1,18 +1,14 @@
-import 'dart:developer';
-import 'dart:ffi';
-
+import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:vgts_task1/config/app_color.dart';
 import 'package:vgts_task1/config/app_layout.dart';
 import 'package:vgts_task1/features/home_screen/model/home_screen_model.dart';
 import 'package:vgts_task1/features/home_screen/repo/home_screen_call.dart';
 import 'package:vgts_task1/features/home_screen/widget/all_product_items.dart';
 import 'package:vgts_task1/features/home_screen/widget/cus_textfield.dart';
-import 'package:vgts_task1/features/product_screen/view/product_screen_view.dart';
 import 'package:vgts_task1/utils/error_text.dart';
 import 'package:vgts_task1/utils/loading_widget.dart';
-import 'package:vgts_task1/widget/rating_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -54,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 alignment: Alignment.centerRight,
                 child: IconButton(
                   onPressed: () {},
-                  icon: const Icon(Icons.shopping_cart_outlined),
+                  icon: const Icon(FluentIcons.cart_20_regular),
                 ),
               ),
               Text(
