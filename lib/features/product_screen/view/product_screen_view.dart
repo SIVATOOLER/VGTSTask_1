@@ -106,7 +106,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                   .textTheme
                                   .bodyMedium!
                                   .copyWith(
-                                height: 1.5
+                                height: 2
                               ),
                             ),
                           ),
