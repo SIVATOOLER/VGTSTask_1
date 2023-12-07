@@ -74,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       dataList = snapShot.data!.products;
                       if (_isFirst) dummyList = dataList;
                       return Expanded(
-                        flex: 5,
+                        flex: 4,
                         child: GridView.builder(
                             shrinkWrap: true,
                             itemCount: dummyList.length,

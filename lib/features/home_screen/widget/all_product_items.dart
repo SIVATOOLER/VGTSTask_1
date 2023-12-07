@@ -21,7 +21,7 @@ class AllProductItems extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 2,
+            flex: 4,
             child: Container(
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondaryContainer,
@@ -34,7 +34,7 @@ class AllProductItems extends StatelessWidget {
           ),
           AppLayout.sizeW20,
           Expanded(
-            flex: 3,
+            flex: 5,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
