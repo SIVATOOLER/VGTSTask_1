@@ -37,7 +37,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          AppLayout.sizeH20,
+
                           AppLayout.sizeH30,
                           Padding(
                             padding: AppLayout.cardPadding,
@@ -72,14 +72,14 @@ class _ProductScreenState extends State<ProductScreen> {
                             ),
                           ),AppLayout.sizeH20,
                           Center(child: CusIndicator(index:currentIndex , length: snapshot.data!.images.length)),
-                          AppLayout.sizeH20,
+                          AppLayout.sizeH8,
                           Padding(
                             padding: AppLayout.cardPadding,
                             child: Text(
                               snapshot.data!.title,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
-                          ),
+                          ), AppLayout.sizeH5,
                           Padding(
                             padding: AppLayout.cardPadding,
                             child: Row(
@@ -101,10 +101,13 @@ class _ProductScreenState extends State<ProductScreen> {
                             padding: AppLayout.cardPadding,
                             child: Text(
                               snapshot.data!.description,
+
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium!
-                                  .copyWith(),
+                                  .copyWith(
+                                height: 1.5
+                              ),
                             ),
                           ),
                           AppLayout.sizeH20,
@@ -141,7 +144,7 @@ class _ProductScreenState extends State<ProductScreen> {
                               )),
                             ),
                           ),
-                          AppLayout.sizeH20,
+                          AppLayout.sizeH30,AppLayout.sizeH10,
                           Padding(
                             padding: AppLayout.cardPadding,
                             child: Container(

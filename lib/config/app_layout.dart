@@ -11,6 +11,8 @@ class AppLayout {
   );
   static const SizedBox sizeH5 = SizedBox(
     height: 5,
+  );static const SizedBox sizeH8 = SizedBox(
+    height: 8,
   );
   static const SizedBox sizeH30 = SizedBox(
     height: 30,
