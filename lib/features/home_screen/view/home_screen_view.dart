@@ -46,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              AppLayout.sizeH8,
               Align(
                 alignment: Alignment.centerRight,
                 child: IconButton(
@@ -73,14 +74,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       dataList = snapShot.data!.products;
                       if (_isFirst) dummyList = dataList;
                       return Expanded(
-                        flex: 4,
+                        flex: 5,
                         child: GridView.builder(
                             shrinkWrap: true,
                             itemCount: dummyList.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                                    mainAxisSpacing: 20,
-                                    childAspectRatio: 3 / 1,
+                                    mainAxisSpacing: 40,
+                                    childAspectRatio: 2.7,
+
                                     crossAxisCount: 1),
                             itemBuilder: (context, index) {
                               return AllProductItems(

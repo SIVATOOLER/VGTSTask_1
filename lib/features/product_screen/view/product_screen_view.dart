@@ -99,14 +99,16 @@ class _ProductScreenState extends State<ProductScreen> {
                           AppLayout.sizeH20,
                           Padding(
                             padding: AppLayout.cardPadding,
-                            child: Text(
-                              snapshot.data!.description,
-
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                height: 2
+                            child: Expanded(
+                              child: Text(
+                                snapshot.data!.description,
+                              
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                  height: 2
+                                ),
                               ),
                             ),
                           ),
@@ -224,7 +226,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     }
                   }),
               Padding(
-                padding: AppLayout.cardPadding,
+                padding:const EdgeInsets.only(top: 8 ,left: 20,right: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -232,7 +234,7 @@ class _ProductScreenState extends State<ProductScreen> {
                    IconButton(
                        onPressed: (){
                          Navigator.pop(context);
-                       }, icon: Icon(CupertinoIcons.arrow_left,
+                       }, icon: Icon(FluentIcons.arrow_left_20_filled,
                    color: Colors.black.withOpacity(0.5),)),
 
                     Column(
