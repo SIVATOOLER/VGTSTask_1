@@ -48,7 +48,7 @@ class HomeScreenController with ChangeNotifier{
 
     if (response.statusCode == 200) {
       final data = AllProductModel.fromJson(json.decode(response.body));
-      changeState(StateEnum.success);
+     // changeState(StateEnum.success);
       log("${data.products}");
       return data;
     } else {
