@@ -3,8 +3,9 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 import 'package:vgts_task1/features/home_screen/model/home_screen_model.dart';
-
 import '../../../utils/state_enum.dart';
+
+
 
 class HomeScreenController with ChangeNotifier{
   HomeScreenController(){
@@ -59,9 +60,4 @@ class HomeScreenController with ChangeNotifier{
 
 
 
-class HomeScreenCall {
 
-
-
-
-}

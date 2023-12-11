@@ -19,20 +19,18 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context){
-        return HomeScreenController();
-      },
-      child: Consumer<HomeScreenController>(
-        builder:
-            (BuildContext context, HomeScreenController value, Widget? child) {
+    return MultiProvider(
+        providers: [
+      ChangeNotifierProvider(
+        create: (context) {
+          return HomeScreenController();
+        },
+      ),
+    ],
+      builder: (context, child){
+          final provider =Provider.of<HomeScreenController>(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -57,30 +55,30 @@ class _HomeScreenState extends State<HomeScreen> {
                         flex: 0,
                         child: CusTextfield(
                           onChangeFun: (val) {
-                            value.filterFun(val);
+                            provider.filterFun(val);
                           },
                         )),
                     AppLayout.sizeH20,
                     FutureBuilder(
-                        future: value.getMethod(),
+                        future: provider.getMethod(),
                         builder: (BuildContext context, snapShot) {
                           if (snapShot.hasData) {
-                            value.dataList = snapShot.data!.products;
-                            if (value.isFirst) value.dummyList = value.dataList;
+                            provider.dataList = snapShot.data!.products;
+                            if (provider.isFirst)
+                              provider.dummyList = provider.dataList;
                             return Expanded(
                               flex: 4,
                               child: GridView.builder(
                                   shrinkWrap: true,
-                                  itemCount: value.dummyList.length,
+                                  itemCount: provider.dummyList.length,
                                   gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       mainAxisSpacing: 40,
                                       childAspectRatio: 2.7,
-
                                       crossAxisCount: 1),
                                   itemBuilder: (context, index) {
                                     return AllProductItems(
-                                      data: value.dummyList[index],
+                                      data: provider.dummyList[index],
                                     );
                                   }),
                             );
@@ -95,11 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           );
-            },),
-
+      },
     );
-
-
-
   }
 }

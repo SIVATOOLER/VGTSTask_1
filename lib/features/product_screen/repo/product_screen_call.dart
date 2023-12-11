@@ -26,7 +26,7 @@ class ProductScreenController with ChangeNotifier{
 
     if (response.statusCode == 200) {
       final data = ProductModel.fromJson(json.decode(response.body));
-      changeState(StateEnum.success);
+      //changeState(StateEnum.success);
       log("$data");
       return data;
     } else {
