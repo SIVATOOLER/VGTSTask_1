@@ -15,7 +15,6 @@ import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import '../../home_screen/model/home_screen_model.dart';
 import '../../home_screen/repo/home_screen_call.dart';
 
-
 class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key, required this.id});
   final String id;
@@ -25,71 +24,76 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  var currentIndex=0;
+  var currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     final sHeight = MediaQuery.of(context).size.height;
     return ChangeNotifierProvider(
-        create: (context){
-          return ProductScreenController();
-        },
-        child:Consumer(
-        builder: (BuildContext context,ProductScreenController value, Widget? child) {
+      create: (context) {
+        return ProductScreenController();
+      },
+      child: Consumer(
+        builder: (BuildContext context, ProductScreenController value,
+            Widget? child) {
           return Scaffold(
             body: SafeArea(
               child: SingleChildScrollView(
                 child: Stack(
                   children: [
                     FutureBuilder(
-                        future:value.getMethod(widget.id),
+                        future: value.getMethod(widget.id),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-
                                 AppLayout.sizeH30,
                                 Padding(
                                   padding: AppLayout.cardPadding,
                                   child: CarouselSlider.builder(
                                     itemCount: snapshot.data!.images.length,
-                                    itemBuilder: (BuildContext context, int itemIndex,
-                                        int pageViewIndex) =>
+                                    itemBuilder: (BuildContext context,
+                                            int itemIndex, int pageViewIndex) =>
                                         Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white70,
-                                              borderRadius: BorderRadius.circular(12),
-                                              image: DecorationImage(image: NetworkImage(snapshot.data!.images[itemIndex],
-                                              ),fit: BoxFit.contain
-                                                ,)
-                                          ),
-
-                                        ),
+                                      decoration: BoxDecoration(
+                                          color: Colors.white70,
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                          image: DecorationImage(
+                                            image: NetworkImage(
+                                              snapshot.data!.images[itemIndex],
+                                            ),
+                                            fit: BoxFit.contain,
+                                          )),
+                                    ),
                                     options: CarouselOptions(
-
                                         height: sHeight * 0.4,
                                         autoPlay: false,
                                         enlargeCenterPage: true,
                                         viewportFraction: 0.9,
                                         initialPage: 0,
-                                        onPageChanged: (index,reason){
+                                        onPageChanged: (index, reason) {
                                           setState(() {
-
-                                            currentIndex=index;
+                                            currentIndex = index;
                                           });
-                                        }
-                                    ),
+                                        }),
                                   ),
-                                ),AppLayout.sizeH20,
-                                Center(child: CusIndicator(index:currentIndex , length: snapshot.data!.images.length)),
+                                ),
+                                AppLayout.sizeH20,
+                                Center(
+                                    child: CusIndicator(
+                                        index: currentIndex,
+                                        length: snapshot.data!.images.length)),
                                 AppLayout.sizeH8,
                                 Padding(
                                   padding: AppLayout.cardPadding,
                                   child: Text(
                                     snapshot.data!.title,
-                                    style: Theme.of(context).textTheme.titleMedium,
+                                    style:
+                                        Theme.of(context).textTheme.titleMedium,
                                   ),
-                                ), AppLayout.sizeH5,
+                                ),
+                                AppLayout.sizeH5,
                                 Padding(
                                   padding: AppLayout.cardPadding,
                                   child: Row(
@@ -99,7 +103,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall!
-                                            .copyWith(fontWeight: FontWeight.w500),
+                                            .copyWith(
+                                                fontWeight: FontWeight.w500),
                                       ),
                                       RatingWidget(
                                           rating: snapshot.data!.rating.toInt())
@@ -115,9 +120,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium!
-                                          .copyWith(
-                                          height: 2
-                                      ),
+                                          .copyWith(height: 2),
                                     ),
                                   ),
                                 ),
@@ -127,15 +130,15 @@ class _ProductScreenState extends State<ProductScreen> {
                                   color: Colors.white,
                                   child: Center(
                                       child: Text(
-                                        "Discount Percentage : ${snapshot.data!.discountPercentage} %",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium!
-                                            .copyWith(
+                                    "Discount Percentage : ${snapshot.data!.discountPercentage} %",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
                                             color: Theme.of(context)
                                                 .primaryColor
                                                 .withOpacity(0.6)),
-                                      )),
+                                  )),
                                 ),
                                 AppLayout.sizeH20,
                                 Padding(
@@ -144,18 +147,20 @@ class _ProductScreenState extends State<ProductScreen> {
                                     height: sHeight * 0.06,
                                     decoration: BoxDecoration(
                                         color: Colors.white,
-                                        borderRadius: BorderRadius.circular(12)),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
                                     child: Center(
                                         child: Text(
-                                          "Brand :${snapshot.data!.brand} (${snapshot.data!.category})",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .copyWith(),
-                                        )),
+                                      "Brand :${snapshot.data!.brand} (${snapshot.data!.category})",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium!
+                                          .copyWith(),
+                                    )),
                                   ),
                                 ),
-                                AppLayout.sizeH30,AppLayout.sizeH10,
+                                AppLayout.sizeH30,
+                                AppLayout.sizeH10,
                                 Padding(
                                   padding: AppLayout.cardPadding,
                                   child: Container(
@@ -163,33 +168,35 @@ class _ProductScreenState extends State<ProductScreen> {
                                         color: Theme.of(context)
                                             .primaryColor
                                             .withOpacity(0.6),
-                                        borderRadius: BorderRadius.circular(12)),
+                                        borderRadius:
+                                            BorderRadius.circular(12)),
                                     height: sHeight * 0.09,
                                     child: Padding(
                                       padding: AppLayout.cardPadding,
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
                                           RichText(
                                               text: TextSpan(children: [
-                                                TextSpan(
-                                                  text: "Total Amount\n",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodySmall!
-                                                      .copyWith(color: Colors.white),
-                                                ),
-                                                TextSpan(
-                                                  text: "\$${snapshot.data!.price}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .titleSmall!
-                                                      .copyWith(
+                                            TextSpan(
+                                              text: "Total Amount\n",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall!
+                                                  .copyWith(
+                                                      color: Colors.white),
+                                            ),
+                                            TextSpan(
+                                              text: "\$${snapshot.data!.price}",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleSmall!
+                                                  .copyWith(
                                                       color: Colors.white,
                                                       fontSize: 25),
-                                                )
-                                              ])),
+                                            )
+                                          ])),
                                           Container(
                                             height: sHeight * 0.045,
                                             decoration: BoxDecoration(
@@ -197,7 +204,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                                     .primaryColor
                                                     .withOpacity(0.9),
                                                 borderRadius:
-                                                BorderRadius.circular(12)),
+                                                    BorderRadius.circular(12)),
                                             child: Center(
                                               child: Padding(
                                                 padding: const EdgeInsets.only(
@@ -208,8 +215,8 @@ class _ProductScreenState extends State<ProductScreen> {
                                                       .textTheme
                                                       .titleSmall!
                                                       .copyWith(
-                                                    color: Colors.white,
-                                                  ),
+                                                        color: Colors.white,
+                                                      ),
                                                 ),
                                               ),
                                             ),
@@ -235,17 +242,20 @@ class _ProductScreenState extends State<ProductScreen> {
                           }
                         }),
                     Padding(
-                      padding:const EdgeInsets.only(top: 8 ,left: 20,right: 20),
+                      padding:
+                          const EdgeInsets.only(top: 8, left: 20, right: 20),
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           IconButton(
-                              onPressed: (){
+                              onPressed: () {
                                 Navigator.pop(context);
-                              }, icon: Icon(FluentIcons.arrow_left_20_filled,
-                            color: Colors.black.withOpacity(0.5),)),
-
+                              },
+                              icon: Icon(
+                                FluentIcons.arrow_left_20_filled,
+                                color: Colors.black.withOpacity(0.5),
+                              )),
                           Column(
                             children: [
                               IconButton(
@@ -267,10 +277,8 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
             ),
           );
-    },
-    )
-    ,);
-
-
+        },
+      ),
+    );
   }
 }
