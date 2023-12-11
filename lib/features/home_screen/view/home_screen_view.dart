@@ -1,15 +1,16 @@
-import 'package:cupertino_icons/cupertino_icons.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:vgts_task1/config/app_layout.dart';
-import 'package:vgts_task1/features/home_screen/model/home_screen_model.dart';
 import 'package:vgts_task1/features/home_screen/repo/home_screen_call.dart';
 import 'package:vgts_task1/features/home_screen/widget/all_product_items.dart';
 import 'package:vgts_task1/features/home_screen/widget/cus_textfield.dart';
 import 'package:vgts_task1/utils/error_text.dart';
 import 'package:vgts_task1/utils/loading_widget.dart';
+
+import '../../../locale/locale_keys.g.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,8 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: const Icon(FluentIcons.cart_20_regular),
                       ),
                     ),
-                    Text(
-                      "Mobile Phone",
+                    Text(LocaleKeys.mobile_phone.tr(),
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     AppLayout.sizeH20,
