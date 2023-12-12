@@ -8,40 +8,22 @@ import '../../../utils/state_enum.dart';
 
 
 class HomeScreenController with ChangeNotifier{
-  HomeScreenController(){
-    changeState(StateEnum.success);
-  }
+  // HomeScreenController(){
+  //   changeState(StateEnum.success);
+  // }
   //BuildContext context;
   late StateEnum state;
-  List<Product> dummyList = [];
-  List<Product> dataList = [];
-  bool isFirst = true;
+
   final baseUrl = "https://dummyjson.com/products";
 
 
 
-  changeState(StateEnum stateEnum) {
-    state = stateEnum;
-    notifyListeners();
-  }
+  // changeState(StateEnum stateEnum) {
+  //   state = stateEnum;
+  //   notifyListeners();
+  // }
 
-  filterFun(String value) {
-    isFirst = false;
 
-      if (value.isEmpty) {
-        dummyList = dataList;
-        notifyListeners();
-        // log("${dummyList.length}");
-      } else {
-        dummyList = dataList
-            .where((element) =>
-            element.title.toLowerCase().contains(value.toLowerCase()))
-            .toList();
-        print("${dummyList.length}");
-        notifyListeners();
-      }
-
-  }
 
 
   Future<AllProductModel> getMethod() async {

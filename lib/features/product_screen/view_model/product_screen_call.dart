@@ -9,15 +9,15 @@ import 'package:vgts_task1/features/product_screen/model/product_screen_model.da
 import '../../../utils/state_enum.dart';
 
 class ProductScreenController with ChangeNotifier{
-  ProductScreenController(){
-    changeState(StateEnum.success);
-  }
+  // ProductScreenController(){
+  //   changeState(StateEnum.success);
+  // }
 
 
-  changeState(StateEnum stateEnum) {
-    state = stateEnum;
-    notifyListeners();
-  }
+  // changeState(StateEnum stateEnum) {
+  //   state = stateEnum;
+  //   notifyListeners();
+  // }
   late StateEnum state;
   final String baseUrl = "https://dummyjson.com/products";
 

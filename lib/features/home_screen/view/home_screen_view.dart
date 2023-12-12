@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:fluentui_system_icons/fluentui_system_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:vgts_task1/config/app_layout.dart';
-import 'package:vgts_task1/features/home_screen/repo/home_screen_call.dart';
 import 'package:vgts_task1/features/home_screen/widget/all_product_items.dart';
 import 'package:vgts_task1/features/home_screen/widget/cus_textfield.dart';
 import 'package:vgts_task1/utils/error_text.dart';
 import 'package:vgts_task1/utils/loading_widget.dart';
-
 import '../../../locale/locale_keys.g.dart';
+import '../view_model/home_screen_controller.dart';
+import '../view_model/search_controller.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -22,16 +22,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-      ChangeNotifierProvider(
-        create: (context) {
-          return HomeScreenController();
-        },
-      ),
-    ],
-      builder: (context, child){
-          final provider =Provider.of<HomeScreenController>(context);
+    final homeProvider =context.watch<HomeScreenController>();
+    final searchProvider =context.watch<FilterController>();
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -55,22 +47,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         flex: 0,
                         child: CusTextfield(
                           onChangeFun: (val) {
-                            provider.filterFun(val);
+                            searchProvider.filterFun(val);
                           },
                         )),
                     AppLayout.sizeH20,
                     FutureBuilder(
-                        future: provider.getMethod(),
+                        future: homeProvider.getMethod(),
                         builder: (BuildContext context, snapShot) {
                           if (snapShot.hasData) {
-                            provider.dataList = snapShot.data!.products;
-                            if (provider.isFirst)
-                              provider.dummyList = provider.dataList;
+                            searchProvider.dataList = snapShot.data!.products;
+                            if (searchProvider.isFirst) {
+                              searchProvider.dummyList = searchProvider.dataList;
+                            }
                             return Expanded(
                               flex: 4,
                               child: GridView.builder(
                                   shrinkWrap: true,
-                                  itemCount: provider.dummyList.length,
+                                  itemCount: searchProvider.dummyList.length,
                                   gridDelegate:
                                   const SliverGridDelegateWithFixedCrossAxisCount(
                                       mainAxisSpacing: 40,
@@ -78,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                       crossAxisCount: 1),
                                   itemBuilder: (context, index) {
                                     return AllProductItems(
-                                      data: provider.dummyList[index],
+                                      data: searchProvider.dummyList[index],
                                     );
                                   }),
                             );
@@ -93,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           );
-      },
-    );
+
+
   }
 }

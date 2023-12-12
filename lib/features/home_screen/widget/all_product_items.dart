@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:vgts_task1/config/app_color.dart';
 import 'package:vgts_task1/config/app_layout.dart';
+import 'package:vgts_task1/config/app_routes.dart';
+import 'package:vgts_task1/config/routes.dart';
 import 'package:vgts_task1/features/home_screen/model/home_screen_model.dart';
-import 'package:vgts_task1/features/product_screen/view/product_screen_view.dart';
 import 'package:vgts_task1/widget/rating_widget.dart';
 
 class AllProductItems extends StatelessWidget {
@@ -13,10 +14,7 @@ class AllProductItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => ProductScreen(id: "${data.id}")));
+       Navigator.pushNamed(context, AppRoutes.product,arguments: ProductScreenArguments(id: "${data.id}"));
       },
       child: Row(
         children: [
@@ -29,7 +27,6 @@ class AllProductItems extends StatelessWidget {
                 image: DecorationImage(image: NetworkImage(data.thumbnail,
                   ),fit: BoxFit.fill,)
               ),
-
             ),
           ),
           AppLayout.sizeW20,
@@ -63,6 +60,5 @@ class AllProductItems extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
